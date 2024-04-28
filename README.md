@@ -1,5 +1,5 @@
 A task management app helps users organize, track, and manage tasks and projects effectively. <br/>
-To build this application, I used<br/>
+To build this application, We used<br/>
 <ul>
 	<li>TypeScript</li>
 	<li>React</li>
