@@ -1,4 +1,4 @@
-import { Box, Heading, Input, Text, Button } from "@chakra-ui/react";
+import { Box, Heading, Input, Text, Button, FormControl, FormLabel, FormHelperText, FormErrorMessage } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
 const SignUp = () => {
@@ -23,6 +23,8 @@ const SignUp = () => {
         console.log(e.target.value);
         setPassword(e.target.value);
     }
+
+    const isError = name === '';
     const onSubmit = () => {
         axios.post("http://localhost:3050/auth/sign-up", {
             name,
@@ -40,10 +42,19 @@ const SignUp = () => {
         <Box>
             <Heading as='h2' size='xl'  textAlign='center' >Create an account</Heading>
             <Box maxW='75%' display='flex' flexDirection='column' alignItems='center' m='0 auto' gap={3}>
-                <Box display='flex' flexDirection='column' gap={2} w='100%' m='0 auto' >
+                {/* <Box display='flex' flexDirection='column' gap={2} w='100%' m='0 auto' >
                     <Text>Name: </Text>
                     <Input type='text' onChange = {onNameChange}/>
-                </Box>
+                </Box> */}
+                <FormControl isInvalid={isError}>
+                    <FormLabel>Name</FormLabel>
+                    <Input type='text' onChange={onNameChange} value={name}/>
+                    {
+                        !isError? null:(
+                            <FormErrorMessage>Name is required</FormErrorMessage>
+                        )
+                    }
+                </FormControl>
                 <Box display='flex' flexDirection='column' gap={2} w='100%'>
                     <Text>Email: </Text>
                     <Input type='email' onChange={onEmailChange}/>
